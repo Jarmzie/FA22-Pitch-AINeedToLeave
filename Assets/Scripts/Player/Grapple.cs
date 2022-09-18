@@ -11,7 +11,7 @@ public class Grapple : MonoBehaviour
     private Vector3 grapplePoint;
     [SerializeField]
     private Transform grappleTip, view, player;
-    private float maxDistance = 10f;
+    private float maxDistance = 40f;
     private SpringJoint joint;
 
     void Update()
