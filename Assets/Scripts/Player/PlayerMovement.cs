@@ -214,10 +214,18 @@ public class PlayerMovement : MonoBehaviour
             readyToJump = false;
 
             //normal jump
-            if (isWallLeft && !Input.GetKey(KeyCode.D) || isWallRight && !Input.GetKey(KeyCode.A))
+            if (isWallLeft && !Input.GetKey(KeyCode.D))
             {
-                rb.AddForce(Vector2.up * jumpForce * 1.5f);
+                rb.AddForce(Vector2.up * jumpForce * 0.5f);
                 rb.AddForce(normalVector * jumpForce * 0.5f);
+                rb.AddForce(orientation.right * jumpForce * 1f);
+            }
+
+            if (isWallRight && !Input.GetKey(KeyCode.A))
+            {
+                rb.AddForce(Vector2.up * jumpForce * 0.5f);
+                rb.AddForce(normalVector * jumpForce * 0.5f);
+                rb.AddForce(-orientation.right * jumpForce * 1f);
             }
 
             //sideways wallhop
@@ -225,13 +233,7 @@ public class PlayerMovement : MonoBehaviour
             if (isWallRight && Input.GetKey(KeyCode.A)) rb.AddForce(-orientation.right * jumpForce * 3.2f);
             if (isWallLeft && Input.GetKey(KeyCode.D)) rb.AddForce(orientation.right * jumpForce * 3.2f);
 
-            // //forward force
-            // rb.AddForce(orientation.forward * jumpForce * 1f);
-
-            // //reset velocity
-            // rb.velocity = Vector3.zero;
-
-            // Invoke(nameof(ResetJump), jumpCooldown);
+            Invoke(nameof(ResetJump), jumpCooldown);
         }
     }
 
