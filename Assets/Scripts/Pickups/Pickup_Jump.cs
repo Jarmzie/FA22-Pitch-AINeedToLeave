@@ -13,7 +13,7 @@ public class Pickup_Jump : PickupBase
 
     public override void PickupBehavior(){
         Debug.Log("Jumps modified");
-        player.SetJumpsLeft(player.getJumpsLeft() + 5);
+        player.SetJumpsLeft(player.getJumpsLeft() + 1);
         player.SetMaxJumps(player.getJumpsLeft());
         StartCoroutine(ReturnJumps());
     }
