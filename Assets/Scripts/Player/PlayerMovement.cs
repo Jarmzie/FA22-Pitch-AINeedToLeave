@@ -326,4 +326,14 @@ public class PlayerMovement : MonoBehaviour
         grounded = false;
     }
 
+    public void SetJumpsLeft(int jumps){
+        jumpsLeft = jumps;
+    }
+    public int getJumpsLeft(){
+        return jumpsLeft;
+    }
+    public void SetMaxJumps(int jumps){
+        maxJumps = jumps;
+    }
+
 }
