@@ -16,7 +16,10 @@ public class Blaster : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(0))
         {
-            Shoot();
+            if (canShoot)
+            {
+                Shoot();
+            }
         }
     }
 
