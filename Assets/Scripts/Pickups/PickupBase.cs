@@ -6,6 +6,11 @@ public class PickupBase : MonoBehaviour
 {
     public float ReturnTime = 0.0f;
 
+    private void Update()
+    {
+        transform.Rotate(0, 0, 1, Space.Self);
+    }
+
     void OnTriggerEnter(Collider other) {
         if(other.name=="PlayerBody")
         {

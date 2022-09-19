@@ -13,6 +13,8 @@ public class Grapple : MonoBehaviour
     private Transform grappleTip, view, player;
     private float maxDistance = 40f;
     private SpringJoint joint;
+    [SerializeField]
+    private GameObject hook;
 
     void Update()
     {
@@ -33,9 +35,12 @@ public class Grapple : MonoBehaviour
 
     private void DoGrapple()
     {
+        Detatch();
         RaycastHit hit;
         if (Physics.Raycast(view.position, view.forward, out hit, maxDistance))
         {
+            hook.SetActive(false);
+
             grapplePoint = hit.point;
             joint = player.gameObject.AddComponent<SpringJoint>();
             joint.autoConfigureConnectedAnchor = false;
@@ -66,7 +71,11 @@ public class Grapple : MonoBehaviour
 
     private void Detatch()
     {
+        hook.SetActive(true);
         lr.positionCount = 0;
-        Destroy(joint);
+        if (joint)
+        {
+            Destroy(joint);
+        }
     }
 }
