@@ -5,10 +5,14 @@ using UnityEngine;
 public class PickupBase : MonoBehaviour
 {
     public float ReturnTime = 0.0f;
+    public bool shouldSpin = false;
 
     private void Update()
     {
-        transform.Rotate(0, 0, 1, Space.Self);
+        if (shouldSpin)
+        {
+            transform.Rotate(0, 0, 1, Space.Self);
+        }
     }
 
     void OnTriggerEnter(Collider other) {

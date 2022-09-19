@@ -10,6 +10,8 @@ public class PlayerMovement : MonoBehaviour
     private Transform playerCam;
     [SerializeField]
     private Transform orientation;
+    [SerializeField]
+    private Transform grappleHook;
 
     //Other
     private Rigidbody rb;
@@ -31,6 +33,7 @@ public class PlayerMovement : MonoBehaviour
 
     //Crouch & Slide
     private Vector3 crouchScale = new Vector3(1, 0.5f, 1);
+    private Vector3 grappleCrouchScale = new Vector3(1, 2, 1);
     private Vector3 playerScale;
     private float slideForce = 500f;
     private float slideCounterMovement = 0.1f;
@@ -245,6 +248,7 @@ public class PlayerMovement : MonoBehaviour
     private void StartCrouch()
     {
         transform.localScale = crouchScale;
+        grappleHook.transform.localScale = new Vector3(grappleHook.transform.localScale.x, grappleHook.transform.localScale.y * 2, grappleHook.transform.localScale.z);
         transform.position = new Vector3(transform.position.x, transform.position.y - 0.5f, transform.position.z);
         if (rb.velocity.magnitude > 0.5f)
         {
@@ -258,6 +262,7 @@ public class PlayerMovement : MonoBehaviour
     private void StopCrouch()
     {
         transform.localScale = playerScale;
+        grappleHook.transform.localScale = new Vector3(grappleHook.transform.localScale.x, grappleHook.transform.localScale.y * 0.5f, grappleHook.transform.localScale.z);
         transform.position = new Vector3(transform.position.x, transform.position.y + 0.5f, transform.position.z);
     }
 
